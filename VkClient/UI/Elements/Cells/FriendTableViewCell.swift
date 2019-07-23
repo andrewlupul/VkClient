@@ -7,23 +7,59 @@
 //
 
 import UIKit
+import SnapKit
 
 
-class FriendTableViewCell: UITableViewCell {
-	@IBOutlet weak var avatarImageView: UIImageView!
-	@IBOutlet weak var nameLabel: UILabel!
+struct FriendCellModel {
+    let name: String
+    let imageUrl: String?
+}
 
-	override func awakeFromNib() {
-		super.awakeFromNib()
 
-		avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
-		avatarImageView.clipsToBounds = true
-	}
+final class FriendTableViewCell: UITableViewCell {
+	private let avatarImageView = UIImageView()
+	private let nameLabel = UILabel()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        avatarImageView.image = nil
+    }
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        setup()
+    }
+    
+    func setup() {
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
+        avatarImageView.clipsToBounds = true
+        
+        addSubview(avatarImageView)
+        addSubview(nameLabel)
+        
+        avatarImageView.snp.makeConstraints {
+            $0.height.width.equalTo(40)
+            $0.top.bottom.left.equalToSuperview().inset(4)
+            $0.right.equalTo(nameLabel.snp.left).inset(-4)
+        }
+        
+        nameLabel.snp.makeConstraints {
+            $0.right.equalToSuperview().inset(4)
+            $0.centerY.equalTo(avatarImageView.snp.centerY)
+        }
+    }
 
-	func configureWith(friend: Friend) {
-		nameLabel.text = friend.fullName()
+	func configureWith(model: FriendCellModel) {
+		nameLabel.text = model.name
 
-		guard let avatarURL = friend.avatar else {
+		guard let avatarURL = model.imageUrl else {
 			return
 		}
 

@@ -15,11 +15,11 @@ protocol SignInViewModel {
 }
 
 
-class SignInViewModelImpl {
-	let vkService: VkService
+final class SignInViewModelImpl {
+	private let vkService: VkService
 
-	let signInCompleteRelay = PublishRelay<Void>()
-	let errorRelay = PublishRelay<Error>()
+	private let signInCompleteRelay = PublishRelay<Void>()
+	private let errorRelay = PublishRelay<Error>()
 
 	init(vkService: VkService) {
 		self.vkService = vkService
@@ -48,6 +48,8 @@ extension SignInViewModelImpl: SignInViewControllerBindings {
 	private func signIn() {
 		vkService.login(loginSuccess: { [weak self] in
 			self?.signInCompleteRelay.accept(())
-		}, loginFailure: { })
+		}, loginFailure: {
+            // TODO:
+        })
 	}
 }

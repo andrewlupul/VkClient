@@ -14,11 +14,11 @@ protocol Interaction {
 }
 
 
-class InteractionImpl {
-	let window: UIWindow
-	let navigationController: UINavigationController
-	let factory: ViewControllersFactory
-	let vkService: VkService
+final class InteractionImpl {
+	private let window: UIWindow
+	private let navigationController: UINavigationController
+	private let factory: ViewControllersFactory
+	private let vkService: VkService
 
 	init(window: UIWindow,
 		 navigationController: UINavigationController,
@@ -47,7 +47,7 @@ extension InteractionImpl: Interaction {
 
 
 extension InteractionImpl {
-	func runSignIn() {
+	private func runSignIn() {
 		let vc = factory.signIn()
 
 		vc.onComplete = { [weak self] in
@@ -61,7 +61,7 @@ extension InteractionImpl {
 		navigationController.setNavigationBarHidden(true, animated: true)
 	}
 
-	func runFriendList() {
+	private func runFriendList() {
 		let vc = factory.friendList()
 
 		navigationController.setViewControllers([vc], animated: true)

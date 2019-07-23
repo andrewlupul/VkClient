@@ -9,7 +9,7 @@
 import UIKit
 
 
-class CtaButton: Button {
+final class CtaButton: Button {
 	override var intrinsicContentSize: CGSize {
 		var size = sizeThatFits(UIView.layoutFittingCompressedSize)
 		size.height = 40
@@ -20,7 +20,7 @@ class CtaButton: Button {
 	override func commonInit() {
 		backgroundColor = UIColor.white
 		layer.cornerRadius = 12
-		titleLabel?.font = UIFont(name: "Helvetica", size: 20)
+		titleLabel?.font = .primaryFont(ofSize: .xLarge)
 		setTitleColor(UIColor.black, for: .normal)
 	}
 }

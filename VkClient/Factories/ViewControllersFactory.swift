@@ -17,7 +17,7 @@ protocol ViewControllersFactory {
 
 
 struct ViewControllersFactoryImpl: ViewControllersFactory {
-	let resolver: Resolver
+    let resolver: Resolver
 
 	func signIn() -> SignInViewController {
 		return resolver.resolve(SignInViewController.self)!

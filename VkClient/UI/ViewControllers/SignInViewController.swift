@@ -18,7 +18,7 @@ protocol SignInViewControllerBindings {
 }
 
 
-class SignInViewController: BaseViewController, FlowController {
+final class SignInViewController: BaseViewController, FlowController {
 	enum Event {
 		case signIn
 	}
@@ -28,7 +28,7 @@ class SignInViewController: BaseViewController, FlowController {
 	var bindings: SignInViewControllerBindings?
 	var onComplete: ((Event) -> ())?
 
-	let disposeBag = DisposeBag()
+	private let disposeBag = DisposeBag()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
