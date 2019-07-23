@@ -10,6 +10,14 @@ import UIKit
 
 
 class Button: UIButton {
+    private let highlightedAlpha: CGFloat = 0.7
+    
+    override public var isHighlighted: Bool {
+        didSet {
+            alpha = isHighlighted ? highlightedAlpha : 1
+        }
+    }
+    
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 

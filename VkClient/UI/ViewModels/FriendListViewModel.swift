@@ -16,12 +16,12 @@ protocol FriendListViewModel {
 }
 
 
-class FriendListViewModelImpl {
-	let vkService: VkService
+final class FriendListViewModelImpl {
+	private let vkService: VkService
 
-	let friendsRelay = BehaviorRelay<[Friend]>(value: [])
-	let isRefreshingRelay = BehaviorRelay<Bool>(value: false)
-	let isErrorRelay = PublishRelay<Error>()
+	private let friendsRelay = BehaviorRelay<[FriendCellModel]>(value: [])
+	private let isRefreshingRelay = BehaviorRelay<Bool>(value: false)
+	private let isErrorRelay = PublishRelay<Error>()
 
 	init(vkService: VkService) {
 		self.vkService = vkService
@@ -29,11 +29,15 @@ class FriendListViewModelImpl {
 		refresh()
 	}
 
-	func refresh() {
+	private func refresh() {
 		isRefreshingRelay.accept(true)
 		
 		vkService.getFriends(sucсess: { [weak self] in
-			self?.friendsRelay.accept($0)
+            let cellModels = $0.map({ friend -> FriendCellModel in
+                FriendCellModel(name: friend.fullName(), imageUrl: friend.avatarUrl)
+            })
+            
+			self?.friendsRelay.accept(cellModels)
 			self?.isRefreshingRelay.accept(false)
 		}, failure: { [weak self] in
 			guard let error = $0 else {
@@ -68,7 +72,7 @@ extension FriendListViewModelImpl: FriendListViewControllerBindings {
 		})
 	}
 
-	func friends() -> BehaviorRelay<[Friend]> {
+	func friends() -> BehaviorRelay<[FriendCellModel]> {
 		return friendsRelay
 	}
 }

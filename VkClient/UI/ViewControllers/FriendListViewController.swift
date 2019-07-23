@@ -13,20 +13,30 @@ import RxCocoa
 
 protocol FriendListViewControllerBindings {
 	func isRefreshing() -> Driver<Bool>
-	func friends() -> BehaviorRelay<[Friend]>
+	func friends() -> BehaviorRelay<[FriendCellModel]>
 
 	func refreshInput() -> Binder<Void>
 	func error() -> Signal<Error>
 }
 
 
-class FriendListViewController: BaseViewController {
-	@IBOutlet weak var tableView: UITableView!
+final class FriendListViewController: BaseViewController {
+	private let tableView = UITableView()
 
 	var bindings: FriendListViewControllerBindings?
 
-	let disposeBag = DisposeBag()
-	let refreshControl = UIRefreshControl()
+	private let disposeBag = DisposeBag()
+	private let refreshControl = UIRefreshControl()
+    
+    override func loadView() {
+        super.loadView()
+        
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(view.safeArea.top)
+            $0.left.right.bottom.equalToSuperview()
+        }
+    }
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -34,7 +44,7 @@ class FriendListViewController: BaseViewController {
 		setup()
 	}
 
-	func setup() {
+	private func setup() {
 		navigationItem.title = "Friends"
 
 		if #available(iOS 10.0, *) {
@@ -44,27 +54,30 @@ class FriendListViewController: BaseViewController {
 		}
 
 		tableView.contentInset.bottom = 10
-		tableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendTableViewCell")
+        tableView.register(FriendTableViewCell.self,
+                           forCellReuseIdentifier: FriendTableViewCell.reusableIdentifier)
 	}
 
 	func configureWith(bindings: FriendListViewControllerBindings) {
 		self.bindings = bindings
 
-		bindings.friends()
-			.bind(to: tableView.rx.items(cellIdentifier: "FriendTableViewCell", cellType: FriendTableViewCell.self)) { (row, element, cell) in
-				cell.configureWith(friend: element)
-			}.disposed(by: disposeBag)
-		bindings.isRefreshing()
-			.drive(refreshControl.rx.isRefreshing)
-			.disposed(by: disposeBag)
-		bindings.error()
-			.emit(to: self.rx.error)
-			.disposed(by: disposeBag)
-
-		refreshControl.rx.controlEvent(.valueChanged)
-			.asSignal()
-			.emit(to: bindings.refreshInput())
-			.disposed(by: disposeBag)
+        disposeBag.insert([
+            bindings.friends()
+                .bind(to: tableView.rx.items(cellIdentifier: FriendTableViewCell.reusableIdentifier,
+                                             cellType: FriendTableViewCell.self))
+                { (row, element, cell) in
+                    cell.configureWith(model: element)
+                },
+            bindings.isRefreshing()
+                .drive(refreshControl.rx.isRefreshing),
+            bindings.error()
+                .emit(to: self.rx.error),
+            
+            refreshControl.rx.controlEvent(.valueChanged)
+                .asSignal()
+                .emit(to: bindings.refreshInput())
+        ])
+		
 	}
 
 	func presentErrorAlert(error: Error) {

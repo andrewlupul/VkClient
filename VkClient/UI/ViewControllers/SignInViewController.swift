@@ -18,41 +18,62 @@ protocol SignInViewControllerBindings {
 }
 
 
-class SignInViewController: BaseViewController, FlowController {
+final class SignInViewController: BaseViewController, FlowController {
 	enum Event {
 		case signIn
 	}
 
-	@IBOutlet weak var signInButton: CtaButton!
+	private let signInButton = CtaButton()
+    private let logoImageView = UIImageView(image: #imageLiteral(resourceName: "logo"))
 
-	var bindings: SignInViewControllerBindings?
-	var onComplete: ((Event) -> ())?
+    private let disposeBag = DisposeBag()
+    
+    var bindings: SignInViewControllerBindings?
+    var onComplete: ((Event) -> ())?
 
-	let disposeBag = DisposeBag()
-
-	override func viewDidLoad() {
+    override func viewDidLoad() {
 		super.viewDidLoad()
 
 		setup()
 	}
+    
+    override func loadView() {
+        super.loadView()
+        
+        view.addSubview(signInButton)
+        view.addSubview(logoImageView)
+        
+        signInButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview().inset(100)
+            $0.left.right.equalToSuperview().inset(24)
+        }
+        
+        logoImageView.snp.makeConstraints {
+            $0.centerY.equalToSuperview().inset(-100)
+            $0.centerX.equalToSuperview()
+            $0.height.width.equalTo(100)
+        }
+    }
 
 	private func setup() {
 		VKSdk.instance().uiDelegate = self
 		signInButton.setTitle("Sign In", for: .normal)
+        view.backgroundColor = .background
 	}
 
 	func configureWith(bindings: SignInViewControllerBindings) {
 		self.bindings = bindings
 
-		bindings.successSignIn()
-			.emit(onNext: { [weak self] in
-				self?.complete(.signIn)
-			}).disposed(by: disposeBag)
-
-		signInButton.rx.tap
-			.asSignal()
-			.emit(to: bindings.signInButtonTapped())
-			.disposed(by: disposeBag)
+        disposeBag.insert([
+            bindings.successSignIn()
+                .emit(onNext: { [weak self] in
+                    self?.complete(.signIn)
+                }),
+            
+            signInButton.rx.tap
+                .asSignal()
+                .emit(to: bindings.signInButtonTapped())
+        ])
 	}
 }
 

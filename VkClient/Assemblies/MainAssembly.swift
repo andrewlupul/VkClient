@@ -79,7 +79,6 @@ struct MainAssembly: Assembly {
 		container.register(FriendListViewController.self) { r in
 			let vc = FriendListViewController()
 			let viewModel = r.resolve(FriendListViewModel.self)!
-//			vc.configureWith(bindings: viewModel.bindings())
 
 			vc.lazyLoadBlock = { [weak vc] in
 				vc?.configureWith(bindings: viewModel.bindings())

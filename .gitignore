@@ -32,6 +32,10 @@ xcuserdata/
 timeline.xctimeline
 playground.xcworkspace
 
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
 .build/
 
 Pods

@@ -10,25 +10,35 @@ import Foundation
 import VK_ios_sdk
 
 
+typealias callBack = () -> Void
+
+
 protocol VkService {
-	func getFriends(sucсess: @escaping ([Friend]) -> Void, failure: @escaping (Error?) -> Void)
-	func login(loginSuccess: @escaping () -> Void, loginFailure: @escaping () -> Void)
-	func checkAuth(hasSession: @escaping () -> Void, noSession: @escaping () -> Void)
+	func getFriends(sucсess: @escaping ([Friend]) -> Void,
+                    failure: @escaping (Error?) -> Void)
+    
+	func login(loginSuccess: @escaping callBack,
+               loginFailure: @escaping callBack)
+    
+	func checkAuth(hasSession: @escaping callBack,
+                   noSession: @escaping callBack)
 }
 
 
-class VkServiceImpl: NSObject, VkService {
-	private var loginSuccess: (() -> Void)?
-	private var loginFailure: (() -> Void)?
+final class VkServiceImpl: NSObject, VkService {
+	private var loginSuccess: (callBack)?
+	private var loginFailure: (callBack)?
 
-	func login(loginSuccess: @escaping () -> Void, loginFailure: @escaping () -> Void) {
+	func login(loginSuccess: @escaping callBack,
+               loginFailure: @escaping callBack) {
 		VKSdk.instance().register(self)
 		VKSdk.authorize(["friends", "photos"])
 		self.loginSuccess = loginSuccess
 		self.loginFailure = loginFailure
 	}
 
-	func getFriends(sucсess: @escaping ([Friend]) -> Void, failure: @escaping (Error?) -> Void) {
+	func getFriends(sucсess: @escaping ([Friend]) -> Void,
+                    failure: @escaping (Error?) -> Void) {
 		VKApi.friends().get(["counts": 500, "fields": "photo_100"]).execute(resultBlock: { (response) in
 			guard let json = response?.json as? [String: Any] else { return failure(nil)}
 			guard let data = try? JSONSerialization.data(withJSONObject: json, options: []) else {
@@ -46,7 +56,8 @@ class VkServiceImpl: NSObject, VkService {
 		})
 	}
 
-	func checkAuth(hasSession: @escaping () -> Void, noSession: @escaping () -> Void) {
+	func checkAuth(hasSession: @escaping callBack,
+                   noSession: @escaping callBack) {
 		VKSdk.wakeUpSession(["friends", "photos"]) { (vkAuthState, error) in
 			if vkAuthState == VKAuthorizationState.authorized {
 				hasSession()
@@ -56,6 +67,7 @@ class VkServiceImpl: NSObject, VkService {
 		}
 	}
 }
+
 
 extension VkServiceImpl: VKSdkDelegate {
 	func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
