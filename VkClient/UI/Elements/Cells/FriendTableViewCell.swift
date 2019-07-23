@@ -42,16 +42,16 @@ final class FriendTableViewCell: UITableViewCell {
     }
     
     func setup() {
+        let imageHeight: CGFloat = 40
         selectionStyle = .none
-        
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
         avatarImageView.clipsToBounds = true
+        avatarImageView.layer.cornerRadius = imageHeight / 2
         
         addSubview(avatarImageView)
         addSubview(nameLabel)
         
         avatarImageView.snp.makeConstraints {
-            $0.height.width.equalTo(40)
+            $0.height.width.equalTo(imageHeight)
             $0.top.bottom.left.equalToSuperview().inset(4)
             $0.right.equalTo(nameLabel.snp.left).inset(-4)
         }
