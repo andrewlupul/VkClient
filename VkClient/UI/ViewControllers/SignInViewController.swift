@@ -24,7 +24,7 @@ final class SignInViewController: BaseViewController, FlowController {
 	}
 
 	private let signInButton = CtaButton()
-    private let logoImageView = UIImageView()
+    private let logoImageView = UIImageView(image: #imageLiteral(resourceName: "logo"))
 
     private let disposeBag = DisposeBag()
     
@@ -51,12 +51,14 @@ final class SignInViewController: BaseViewController, FlowController {
         logoImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview().inset(-100)
             $0.centerX.equalToSuperview()
+            $0.height.width.equalTo(100)
         }
     }
 
 	private func setup() {
 		VKSdk.instance().uiDelegate = self
 		signInButton.setTitle("Sign In", for: .normal)
+        view.backgroundColor = .background
 	}
 
 	func configureWith(bindings: SignInViewControllerBindings) {

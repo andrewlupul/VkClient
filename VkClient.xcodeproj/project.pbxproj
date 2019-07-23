@@ -30,6 +30,7 @@
 		2BD356572247004200116CF0 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD356562247004200116CF0 /* FriendListViewController.swift */; };
 		B4AFFD6822E7B7ED00317B16 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AFFD6722E7B7ED00317B16 /* Font.swift */; };
 		B4AFFD6A22E7C14C00317B16 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AFFD6922E7C14C00317B16 /* UIView.swift */; };
+		B4AFFD6C22E7C25900317B16 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AFFD6B22E7C25900317B16 /* Color.swift */; };
 		E0DE0C6B13DB0F0EA1318A6D /* Pods_VkClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2CE327CDD3F452582F19ABD /* Pods_VkClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		B457AE1DD5F2DC5491625729 /* Pods-VkClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VkClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VkClient/Pods-VkClient.debug.xcconfig"; sourceTree = "<group>"; };
 		B4AFFD6722E7B7ED00317B16 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		B4AFFD6922E7C14C00317B16 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		B4AFFD6B22E7C25900317B16 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 				2B3C52C92247B94600277A90 /* UIImage.swift */,
 				B4AFFD6722E7B7ED00317B16 /* Font.swift */,
 				B4AFFD6922E7C14C00317B16 /* UIView.swift */,
+				B4AFFD6B22E7C25900317B16 /* Color.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				B4AFFD6A22E7C14C00317B16 /* UIView.swift in Sources */,
 				2BD356552246FA1800116CF0 /* FlowController.swift in Sources */,
 				2BD356332246D64900116CF0 /* MainAssembly.swift in Sources */,
+				B4AFFD6C22E7C25900317B16 /* Color.swift in Sources */,
 				B4AFFD6822E7B7ED00317B16 /* Font.swift in Sources */,
 				2BD3561E2246C72400116CF0 /* AppDelegate.swift in Sources */,
 				2B3C52C62247B4AD00277A90 /* FriendTableViewCell.swift in Sources */,

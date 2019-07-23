@@ -9,6 +9,7 @@
 import Foundation
 import Swinject
 
+
 extension UIApplication {
 	static let assembler = Assembler([MainAssembly()])
 }

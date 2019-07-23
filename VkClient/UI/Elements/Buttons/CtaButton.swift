@@ -21,6 +21,6 @@ final class CtaButton: Button {
 		backgroundColor = UIColor.white
 		layer.cornerRadius = 12
 		titleLabel?.font = .primaryFont(ofSize: .xLarge)
-		setTitleColor(UIColor.black, for: .normal)
+		setTitleColor(.text, for: .normal)
 	}
 }

@@ -42,6 +42,8 @@ final class FriendTableViewCell: UITableViewCell {
     }
     
     func setup() {
+        selectionStyle = .none
+        
         avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
         avatarImageView.clipsToBounds = true
         
