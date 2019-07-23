@@ -17,6 +17,10 @@ struct FriendCellModel {
 
 
 final class FriendTableViewCell: UITableViewCell {
+    static var reusableIdentifier: String {
+        return String(describing: FriendTableViewCell.self)
+    }
+    
 	private let avatarImageView = UIImageView()
 	private let nameLabel = UILabel()
     

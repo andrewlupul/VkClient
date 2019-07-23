@@ -21,12 +21,22 @@ protocol FriendListViewControllerBindings {
 
 
 final class FriendListViewController: BaseViewController {
-	@IBOutlet weak var tableView: UITableView!
+	private let tableView = UITableView()
 
 	var bindings: FriendListViewControllerBindings?
 
 	private let disposeBag = DisposeBag()
 	private let refreshControl = UIRefreshControl()
+    
+    override func loadView() {
+        super.loadView()
+        
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(view.safeArea.top)
+            $0.left.right.bottom.equalToSuperview()
+        }
+    }
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -44,7 +54,8 @@ final class FriendListViewController: BaseViewController {
 		}
 
 		tableView.contentInset.bottom = 10
-		tableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendTableViewCell")
+        tableView.register(FriendTableViewCell.self,
+                           forCellReuseIdentifier: FriendTableViewCell.reusableIdentifier)
 	}
 
 	func configureWith(bindings: FriendListViewControllerBindings) {
@@ -52,7 +63,7 @@ final class FriendListViewController: BaseViewController {
 
         disposeBag.insert([
             bindings.friends()
-                .bind(to: tableView.rx.items(cellIdentifier: "FriendTableViewCell",
+                .bind(to: tableView.rx.items(cellIdentifier: FriendTableViewCell.reusableIdentifier,
                                              cellType: FriendTableViewCell.self))
                 { (row, element, cell) in
                     cell.configureWith(model: element)

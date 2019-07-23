@@ -20,7 +20,6 @@
 		2BD356392246DD6C00116CF0 /* Interaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD356382246DD6C00116CF0 /* Interaction.swift */; };
 		2BD3563C2246E22500116CF0 /* ViewControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3563B2246E22500116CF0 /* ViewControllersFactory.swift */; };
 		2BD3563F2246E27200116CF0 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3563E2246E27200116CF0 /* SignInViewController.swift */; };
-		2BD356412246E40C00116CF0 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD356402246E40C00116CF0 /* SignInViewController.xib */; };
 		2BD356452246EEFD00116CF0 /* CtaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD356442246EEFD00116CF0 /* CtaButton.swift */; };
 		2BD356472246EFA700116CF0 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD356462246EFA700116CF0 /* Button.swift */; };
 		2BD3564A2246F5F000116CF0 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD356492246F5F000116CF0 /* SignInViewModel.swift */; };
@@ -29,8 +28,8 @@
 		2BD356522246F79100116CF0 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD356512246F79100116CF0 /* Photo.swift */; };
 		2BD356552246FA1800116CF0 /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD356542246FA1800116CF0 /* FlowController.swift */; };
 		2BD356572247004200116CF0 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD356562247004200116CF0 /* FriendListViewController.swift */; };
-		2BD3565922479E3D00116CF0 /* FriendListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD3565822479E3D00116CF0 /* FriendListViewController.xib */; };
 		B4AFFD6822E7B7ED00317B16 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AFFD6722E7B7ED00317B16 /* Font.swift */; };
+		B4AFFD6A22E7C14C00317B16 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AFFD6922E7C14C00317B16 /* UIView.swift */; };
 		E0DE0C6B13DB0F0EA1318A6D /* Pods_VkClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2CE327CDD3F452582F19ABD /* Pods_VkClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +50,6 @@
 		2BD356382246DD6C00116CF0 /* Interaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interaction.swift; sourceTree = "<group>"; };
 		2BD3563B2246E22500116CF0 /* ViewControllersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllersFactory.swift; sourceTree = "<group>"; };
 		2BD3563E2246E27200116CF0 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		2BD356402246E40C00116CF0 /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		2BD356442246EEFD00116CF0 /* CtaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CtaButton.swift; sourceTree = "<group>"; };
 		2BD356462246EFA700116CF0 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		2BD356492246F5F000116CF0 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
@@ -60,10 +58,10 @@
 		2BD356512246F79100116CF0 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		2BD356542246FA1800116CF0 /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
 		2BD356562247004200116CF0 /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
-		2BD3565822479E3D00116CF0 /* FriendListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendListViewController.xib; sourceTree = "<group>"; };
 		A2CE327CDD3F452582F19ABD /* Pods_VkClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VkClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B457AE1DD5F2DC5491625729 /* Pods-VkClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VkClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VkClient/Pods-VkClient.debug.xcconfig"; sourceTree = "<group>"; };
 		B4AFFD6722E7B7ED00317B16 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		B4AFFD6922E7C14C00317B16 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,9 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				2BD3563E2246E27200116CF0 /* SignInViewController.swift */,
-				2BD356402246E40C00116CF0 /* SignInViewController.xib */,
 				2BD356562247004200116CF0 /* FriendListViewController.swift */,
-				2BD3565822479E3D00116CF0 /* FriendListViewController.xib */,
 				2B3C52C22247AC3700277A90 /* BaseViewController.swift */,
 			);
 			path = ViewControllers;
@@ -236,6 +232,7 @@
 				2BD356542246FA1800116CF0 /* FlowController.swift */,
 				2B3C52C92247B94600277A90 /* UIImage.swift */,
 				B4AFFD6722E7B7ED00317B16 /* Font.swift */,
+				B4AFFD6922E7C14C00317B16 /* UIView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -317,8 +314,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BD3565922479E3D00116CF0 /* FriendListViewController.xib in Resources */,
-				2BD356412246E40C00116CF0 /* SignInViewController.xib in Resources */,
 				2BD356282246C72700116CF0 /* LaunchScreen.storyboard in Resources */,
 				2BD356252246C72700116CF0 /* Assets.xcassets in Resources */,
 			);
@@ -383,6 +378,7 @@
 				2BD356452246EEFD00116CF0 /* CtaButton.swift in Sources */,
 				2B3C52CC2247C87700277A90 /* FriendListResponse.swift in Sources */,
 				2BD3564A2246F5F000116CF0 /* SignInViewModel.swift in Sources */,
+				B4AFFD6A22E7C14C00317B16 /* UIView.swift in Sources */,
 				2BD356552246FA1800116CF0 /* FlowController.swift in Sources */,
 				2BD356332246D64900116CF0 /* MainAssembly.swift in Sources */,
 				B4AFFD6822E7B7ED00317B16 /* Font.swift in Sources */,
