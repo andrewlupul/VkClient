@@ -53,7 +53,7 @@ final class FriendListViewController: BaseViewController {
 			tableView.addSubview(refreshControl)
 		}
 
-		tableView.contentInset.bottom = 10
+		tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         tableView.register(FriendTableViewCell.self,
                            forCellReuseIdentifier: FriendTableViewCell.reusableIdentifier)
 	}
